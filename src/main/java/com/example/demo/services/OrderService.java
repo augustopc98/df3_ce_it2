@@ -5,11 +5,11 @@ import com.example.demo.models.CustomerOrder;
 import com.example.demo.models.OrderItem;
 import com.example.demo.models.Payment;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderService {
-    CustomerOrder createOrder(String customerEmail, String customerAddress, Date orderDate, List<OrderItem> items);
+    CustomerOrder createOrder(String customerEmail, String customerAddress, LocalDate orderDate, List<OrderItem> items);
     void addOrderItem(Long orderId, OrderItem item);
     void removeOrderItem(Long orderId, OrderItem item);
     void applyDiscount(Long orderId, Discount discount);

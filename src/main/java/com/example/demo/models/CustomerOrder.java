@@ -2,8 +2,8 @@ package com.example.demo.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,7 +14,7 @@ public class CustomerOrder {
     private Long id;
     private String customerEmail;
     private String customerAddress;
-    private Date orderDate;
+    private LocalDate orderDate;
     private String deliveryStatus;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -26,10 +26,19 @@ public class CustomerOrder {
     private List<Payment> payments = new ArrayList<>();
 
     // Default constructor
-    public CustomerOrder() {}
+    public CustomerOrder(Long id, String customerEmail, String customerAddress, LocalDate orderDate, List<OrderItem> items) {
+        this.id = id;
+        this.customerEmail = customerEmail;
+        this.customerAddress = customerAddress;
+        this.orderDate = orderDate;
+        this.items = items;
+        this.deliveryStatus = "Pending";
+    }
+    public CustomerOrder() {
+    }
 
     // Parameterized constructor
-    public CustomerOrder(String customerEmail, String customerAddress, Date orderDate) {
+    public CustomerOrder(String customerEmail, String customerAddress, LocalDate orderDate) {
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
         this.orderDate = orderDate;
@@ -46,8 +55,8 @@ public class CustomerOrder {
     public String getCustomerAddress() { return customerAddress; }
     public void setCustomerAddress(String customerAddress) { this.customerAddress = customerAddress; }
 
-    public Date getOrderDate() { return orderDate; }
-    public void setOrderDate(Date orderDate) { this.orderDate = orderDate; }
+    public LocalDate getOrderDate() { return orderDate; }
+    public void setOrderDate(LocalDate orderDate) { this.orderDate = orderDate; }
 
     public String getDeliveryStatus() { return deliveryStatus; }
     public void setDeliveryStatus(String deliveryStatus) { this.deliveryStatus = deliveryStatus; }

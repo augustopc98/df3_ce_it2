@@ -8,7 +8,7 @@ import com.example.demo.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public CustomerOrder createOrder(String customerEmail, String customerAddress, Date orderDate, List<OrderItem> items) {
+    public CustomerOrder createOrder(String customerEmail, String customerAddress, LocalDate orderDate, List<OrderItem> items) {
         CustomerOrder Customerorder = new CustomerOrder(null, customerEmail, customerAddress, orderDate, items);
         return orderRepository.save(Customerorder);
     }

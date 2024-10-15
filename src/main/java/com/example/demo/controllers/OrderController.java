@@ -7,9 +7,12 @@ import com.example.demo.models.Payment;
 import com.example.demo.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -19,10 +22,12 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping
-    public CustomerOrder createOrder(@RequestParam String customerEmail,
-                             @RequestParam String customerAddress,
-                             @RequestParam Date orderDate,
-                             @RequestBody List<OrderItem> items) {
+    public CustomerOrder createOrder(
+            @RequestParam String customerEmail,
+            @RequestParam String customerAddress,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate orderDate,
+            @RequestBody List<OrderItem> items) {
+
         return orderService.createOrder(customerEmail, customerAddress, orderDate, items);
     }
 

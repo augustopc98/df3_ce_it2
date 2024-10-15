@@ -11,6 +11,9 @@ public class Discount {
         this.discountPercentage = discountPercentage;
     }
 
+    public Discount() {
+    }
+
     // Getter and setter
     public BigDecimal getDiscountPercentage() { return discountPercentage; }
     public void setDiscountPercentage(BigDecimal discountPercentage) {
